@@ -127,9 +127,11 @@ public class UiText extends UiComponent {
 	}
 
 	/**
-	 * Aligns the UiText to the defined component and horizontally aligns it
+	 * Aligns the UiText to the defined component and horizontally aligns it. If
+	 * planned to bound to another component, the UiText object should be a
+	 * subcomponent of UiComponent.
 	 * 
-	 * @param component the component to be aligned with
+	 * @param component the parent or super component to be aligned with
 	 * @param alignment how to align the text
 	 */
 	public void boundToComponent(UiComponent component, HorizontalAlignment alignment) {
@@ -138,9 +140,11 @@ public class UiText extends UiComponent {
 	}
 
 	/**
-	 * Aligns the UiText to the defined component and vertically aligns it
+	 * Aligns the UiText to the defined component and vertically aligns it. If
+	 * planned to bound to another component, the UiText object should be a
+	 * subcomponent of UiComponent.
 	 * 
-	 * @param component the component to be aligned with
+	 * @param component the parent or super component to be aligned with
 	 * @param alignment how to align the text
 	 */
 	public void boundToComponent(UiComponent component, VerticalAlignment alignment) {
