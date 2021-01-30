@@ -11,7 +11,7 @@ import me.darrionat.darrionGL.components.enums.HorizontalAlignment;
 import me.darrionat.darrionGL.components.enums.VerticalAlignment;
 import me.darrionat.darrionGL.constraints.UiConstraints;
 
-public class Button extends UiComponent {
+public class UiButton extends UiComponent {
 
 	private UiBlock rect;
 	private UiText text;
@@ -26,7 +26,7 @@ public class Button extends UiComponent {
 	 * @param text the String that will be displayed based on the MenuButton's
 	 *             constraints
 	 */
-	public Button(String displayedText) {
+	public UiButton(String displayedText) {
 		super();
 
 		rect = new UiBlock();

@@ -2,14 +2,16 @@ package me.darrionat.darrionGL;
 
 import javax.swing.JFrame;
 
+import me.darrionat.darrionGL.events.MouseEvents;
+
 public abstract class UI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	public static int width;
 	public static int height;
-
 	private static UiContainer currentMenu;
+	private MouseEvents events;
 
 	public UI() {
 
@@ -23,13 +25,19 @@ public abstract class UI extends JFrame {
 		setVisible(true);
 		width = getWidth();
 		height = getHeight();
+		events = new MouseEvents();
 	}
 
 	/**
+	 * Changes the current UiContainer of the UI
 	 * 
-	 * @param container
+	 * @param container the container to display
 	 */
-	public void setCurrentUiContainer(UiContainer container) {
+	public void setCurrentContainer(UiContainer container) {
+		if (currentMenu != null && events != null) {
+			currentMenu.removeMouseListener(events);
+			currentMenu.removeMouseWheelListener(events);
+		}
 		currentMenu = container;
 		add(container);
 		pack();
@@ -37,5 +45,7 @@ public abstract class UI extends JFrame {
 		container.setComponents();
 		width = getWidth();
 		height = getHeight();
+		container.addMouseListener(events);
+		container.addMouseWheelListener(events);
 	}
 }

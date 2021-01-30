@@ -4,7 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-public class UiEllipse extends UiComponent {
+import me.darrionat.darrionGL.events.interfaces.Clickable;
+
+public class UiEllipse extends UiComponent implements Clickable {
+
+	private Ellipse2D ellipse;
 
 	public UiEllipse() {
 		super();
@@ -17,5 +21,9 @@ public class UiEllipse extends UiComponent {
 		g2d.setColor(uiColor.getColor());
 		g2d.fill(ellipse);
 		g2d.draw(ellipse);
+	}
+
+	public boolean shapeContainsPoint(double x, double y) {
+		return ellipse.contains(x, y);
 	}
 }

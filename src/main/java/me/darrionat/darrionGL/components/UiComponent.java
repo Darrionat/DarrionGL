@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.darrionat.darrionGL.constraints.UiConstraints;
+import me.darrionat.darrionGL.events.interfaces.Clickable;
 
 /**
  * Represents a component of the display such as a pop up GUI, a UiComponent can
@@ -44,6 +45,15 @@ public abstract class UiComponent {
 	 */
 	public UiComponent() {
 		this.uiColor = UiColors.BLACK;
+	}
+
+	/**
+	 * Gets the list of all sub UiComponents contained within this UiComponent
+	 * 
+	 * @return a list of UiComponents that are within this UiComponent
+	 */
+	public List<UiComponent> getSubComponents() {
+		return components;
 	}
 
 	/**
@@ -163,4 +173,27 @@ public abstract class UiComponent {
 	 * @param g graphics to utilize for drawing on
 	 */
 	protected abstract void draw(Graphics g);
+
+	/**
+	 * Checks to see if this component or any subcomponents contain the defined
+	 * point. A component must implement the interface Clickable to be able to
+	 * return {@code true}
+	 * 
+	 * @param x the X value of the point
+	 * @param y the Y value of the point
+	 * @return returns {@code true} if the UiComponent or any subcomponents contain
+	 *         the defined point
+	 */
+	public boolean containsPoint(double x, double y) {
+		if (this instanceof Clickable)
+			if (((Clickable) this).shapeContainsPoint(x, y))
+				return true;
+
+		for (UiComponent subComponent : components) {
+			if (subComponent instanceof Clickable)
+				if (((Clickable) subComponent).shapeContainsPoint(x, y))
+					return true;
+		}
+		return false;
+	}
 }

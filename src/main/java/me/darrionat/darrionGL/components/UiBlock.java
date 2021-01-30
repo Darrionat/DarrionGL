@@ -4,7 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class UiBlock extends UiComponent {
+import me.darrionat.darrionGL.events.interfaces.Clickable;
+
+public class UiBlock extends UiComponent implements Clickable {
+
+	private Rectangle2D rect;
 
 	public UiBlock() {
 		super();
@@ -13,9 +17,13 @@ public class UiBlock extends UiComponent {
 	@Override
 	protected void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		Rectangle2D rect = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
+		rect = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
 		g2d.setColor(uiColor.getColor());
 		g2d.fill(rect);
 		g2d.draw(rect);
+	}
+
+	public boolean shapeContainsPoint(double x, double y) {
+		return rect.contains(x, y);
 	}
 }
