@@ -8,6 +8,7 @@ import javax.swing.event.MouseInputListener;
 
 import me.darrionat.darrionGL.UI;
 import me.darrionat.darrionGL.components.UiComponent;
+import me.darrionat.darrionGL.events.interfaces.Hoverable;
 
 public class MouseEvents implements MouseInputListener, MouseWheelListener {
 
@@ -46,8 +47,27 @@ public class MouseEvents implements MouseInputListener, MouseWheelListener {
 
 	}
 
+	/**
+	 * Used for calling ComponentEnteredEvent and ComponentExitedEvent
+	 * 
+	 * @param e the MouseEvent being passed
+	 */
 	public void mouseMoved(MouseEvent e) {
-
+		for (UiComponent component : UI.getContainer().getComponenets()) {
+			if (!(component instanceof Hoverable))
+				continue;
+			double x = e.getX();
+			double y = e.getY();
+			if (component.containsPoint(x, y)) {
+				if (component.isHovered())
+					continue;
+				component.setHovered(true);
+				EventManager.callEvent(new ComponentEnteredEvent(component));
+			} else if (component.isHovered()) {
+				component.setHovered(false);
+				EventManager.callEvent(new ComponentExitedEvent(component));
+			}
+		}
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent e) {

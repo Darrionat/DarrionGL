@@ -19,15 +19,9 @@ public class EventManager {
 	/**
 	 * Events to create
 	 * 
-	 * ClickedComponentEvent (press+release)
-	 * 
 	 * PressedComponentEvent(but not released)
 	 * 
 	 * ReleasedComponentEvent(end of click)
-	 * 
-	 * EnteredComponentEvent
-	 * 
-	 * ExitedComponentEvent
 	 * 
 	 * DraggedComponentEvent
 	 * 

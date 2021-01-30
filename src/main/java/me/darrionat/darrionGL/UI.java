@@ -46,6 +46,7 @@ public abstract class UI extends JFrame {
 		width = getWidth();
 		height = getHeight();
 		container.addMouseListener(events);
+		container.addMouseMotionListener(events);
 		container.addMouseWheelListener(events);
 	}
 }

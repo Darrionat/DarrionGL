@@ -8,6 +8,7 @@ import java.util.List;
 
 import me.darrionat.darrionGL.constraints.UiConstraints;
 import me.darrionat.darrionGL.events.interfaces.Clickable;
+import me.darrionat.darrionGL.events.interfaces.Hoverable;
 
 /**
  * Represents a component of the display such as a pop up GUI, a UiComponent can
@@ -195,5 +196,22 @@ public abstract class UiComponent {
 					return true;
 		}
 		return false;
+	}
+
+	private boolean hovered = false;
+
+	public boolean isHovered() {
+		if (hovered)
+			return true;
+		for (UiComponent subComponent : components) {
+			if (subComponent instanceof Hoverable && subComponent.isHovered())
+				return true;
+		}
+		return false;
+	}
+
+	public void setHovered(boolean hovered) {
+		if (this instanceof Hoverable)
+			this.hovered = hovered;
 	}
 }

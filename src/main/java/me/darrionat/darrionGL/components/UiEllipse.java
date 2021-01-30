@@ -5,8 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
 import me.darrionat.darrionGL.events.interfaces.Clickable;
+import me.darrionat.darrionGL.events.interfaces.Hoverable;
 
-public class UiEllipse extends UiComponent implements Clickable {
+public class UiEllipse extends UiComponent implements Clickable, Hoverable {
 
 	private Ellipse2D ellipse;
 

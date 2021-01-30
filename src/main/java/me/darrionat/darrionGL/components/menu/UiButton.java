@@ -10,8 +10,9 @@ import me.darrionat.darrionGL.components.UiText;
 import me.darrionat.darrionGL.components.enums.HorizontalAlignment;
 import me.darrionat.darrionGL.components.enums.VerticalAlignment;
 import me.darrionat.darrionGL.constraints.UiConstraints;
+import me.darrionat.darrionGL.events.interfaces.Hoverable;
 
-public class UiButton extends UiComponent {
+public class UiButton extends UiComponent implements Hoverable {
 
 	private UiBlock rect;
 	private UiText text;
