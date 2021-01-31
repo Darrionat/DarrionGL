@@ -25,6 +25,8 @@ public class UiEllipse extends UiComponent implements Clickable, Hoverable {
 	}
 
 	public boolean shapeContainsPoint(double x, double y) {
+		if (ellipse == null)
+			return false;
 		return ellipse.contains(x, y);
 	}
 }

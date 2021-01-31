@@ -36,4 +36,20 @@ public class UiColor {
 	public void setOpacity(float percent) {
 		this.a = (int) (percent * 256) - 1;
 	}
+
+	public int getRed() {
+		return r;
+	}
+
+	public int getGreen() {
+		return g;
+	}
+
+	public int getBlue() {
+		return b;
+	}
+
+	public int getAlpha() {
+		return a;
+	}
 }

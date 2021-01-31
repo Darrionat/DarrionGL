@@ -45,7 +45,7 @@ public class EventManager {
 	/**
 	 * Removes a Listener from {@link #listeners}
 	 * 
-	 * @param listener
+	 * @param listener the listener to remove
 	 */
 	public static void removeListener(Listener listener) {
 		listeners.remove(listener);
@@ -60,6 +60,8 @@ public class EventManager {
 	public static void callEvent(UiEvent event) {
 		for (Listener listener : listeners)
 			for (Method method : listener.getClass().getDeclaredMethods()) {
+				if (event.isCancelled())
+					break;
 				// Method can be ran for the particular event
 				if (!methodCompatibleWithEvent(event, method))
 					continue;

@@ -25,6 +25,8 @@ public class UiBlock extends UiComponent implements Clickable, Hoverable {
 	}
 
 	public boolean shapeContainsPoint(double x, double y) {
+		if (rect == null)
+			return false;
 		return rect.contains(x, y);
 	}
 }

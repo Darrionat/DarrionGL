@@ -6,6 +6,7 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.darrionat.darrionGL.animations.UiAnimation;
 import me.darrionat.darrionGL.constraints.UiConstraints;
 import me.darrionat.darrionGL.events.interfaces.Clickable;
 import me.darrionat.darrionGL.events.interfaces.Hoverable;
@@ -37,6 +38,17 @@ public abstract class UiComponent {
 	 * A List of all subcomponents within this component
 	 */
 	protected List<UiComponent> components = new ArrayList<UiComponent>();
+
+	/**
+	 * The current state of the UiComponent being hovered. If the UiComponent isn't
+	 * hoverable, this won't be changed.
+	 */
+	private boolean hovered = false;
+
+	/**
+	 * The current animation of a UiComponent
+	 */
+	private UiAnimation animation;
 
 	/**
 	 * Creates a UiComponent object without dimensions or constraints, and with a
@@ -198,8 +210,11 @@ public abstract class UiComponent {
 		return false;
 	}
 
-	private boolean hovered = false;
-
+	/**
+	 * Determines if the component is currently being hovered over
+	 * 
+	 * @return returns the state of the component being hovered
+	 */
 	public boolean isHovered() {
 		if (hovered)
 			return true;
@@ -210,8 +225,33 @@ public abstract class UiComponent {
 		return false;
 	}
 
+	/**
+	 * Sets the status of being hovered to the given input. This will only change
+	 * the status of being hovered if the UiComponent implements Hoverable.
+	 * 
+	 * @param hovered the state of the component being hovered
+	 */
 	public void setHovered(boolean hovered) {
 		if (this instanceof Hoverable)
 			this.hovered = hovered;
+	}
+
+	/**
+	 * Gets the animation of the UiComponent, will return {@code null} if no
+	 * animation is defined.
+	 * 
+	 * @return returns the current UiAnimation of the component
+	 */
+	public UiAnimation getAnimation() {
+		return animation;
+	}
+
+	/**
+	 * Sets the animation of the component. This will not run the animation.
+	 * 
+	 * @param animation the animation to set for the component
+	 */
+	public void setAnimation(UiAnimation animation) {
+		this.animation = animation;
 	}
 }

@@ -3,19 +3,16 @@ package me.darrionat.darrionGL.animations;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.darrionat.darrionGL.UiContainer;
+import me.darrionat.darrionGL.UI;
 import me.darrionat.darrionGL.components.UiComponent;
 
 public abstract class UiAnimation {
+
 	/**
 	 * The base timer which runs the animation
 	 */
 	private Timer timer;
-
-	/**
-	 * The container the animation is place in
-	 */
-	private UiContainer container;
+	private boolean running = false;
 
 	/**
 	 * The component that is being animated
@@ -46,8 +43,7 @@ public abstract class UiAnimation {
 	 * @see #start()
 	 * @see #cancel()
 	 */
-	public UiAnimation(UiContainer container, UiComponent uiComponent) {
-		this.container = container;
+	public UiAnimation(UiComponent uiComponent) {
 		this.component = uiComponent;
 	}
 
@@ -97,11 +93,12 @@ public abstract class UiAnimation {
 	 */
 	public void start() {
 		timer = new Timer();
+		running = true;
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				animate(component);
-				container.repaint();
+				UI.getContainer().repaint();
 			}
 		}, delay, (1000 / fps));
 	}
@@ -120,5 +117,10 @@ public abstract class UiAnimation {
 	 */
 	public void cancel() {
 		timer.cancel();
+		running = false;
+	}
+
+	public boolean isRunning() {
+		return running;
 	}
 }
