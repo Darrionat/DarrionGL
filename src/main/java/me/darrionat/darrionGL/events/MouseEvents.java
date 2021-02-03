@@ -53,20 +53,35 @@ public class MouseEvents implements MouseInputListener, MouseWheelListener {
 	 * @param e the MouseEvent being passed
 	 */
 	public void mouseMoved(MouseEvent e) {
+		double x = e.getX();
+		double y = e.getY();
 		for (UiComponent component : UI.getContainer().getComponenets()) {
-			if (!(component instanceof Hoverable))
-				continue;
-			double x = e.getX();
-			double y = e.getY();
-			if (component.containsPoint(x, y)) {
-				if (component.isHovered())
-					continue;
-				component.setHovered(true);
-				EventManager.callEvent(new ComponentEnteredEvent(component));
-			} else if (component.isHovered()) {
-				component.setHovered(false);
-				EventManager.callEvent(new ComponentExitedEvent(component));
+			checkForComponentEnteredOrExit(component, x, y);
+			for (UiComponent subComponent : component.getSubComponents()) {
+				checkForComponentEnteredOrExit(subComponent, x, y);
 			}
+		}
+	}
+
+	/**
+	 * Checks to see if the component is in a state where the mouse entered or
+	 * exited the UiComponent
+	 * 
+	 * @param component the component to check the status of
+	 * @param x         the X coordinate of the mouse
+	 * @param y         the Y coordinate of the mouse
+	 */
+	private void checkForComponentEnteredOrExit(UiComponent component, double x, double y) {
+		if (!(component instanceof Hoverable))
+			return;
+		if (component.containsPoint(x, y)) {
+			if (component.isHovered())
+				return;
+			component.setHovered(true);
+			EventManager.callEvent(new ComponentEnteredEvent(component));
+		} else if (component.isHovered()) {
+			component.setHovered(false);
+			EventManager.callEvent(new ComponentExitedEvent(component));
 		}
 	}
 

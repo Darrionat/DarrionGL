@@ -12,6 +12,18 @@ public class UiConstraints {
 	private WidthConstraint widthConstraint;
 	private HeightConstraint heightConstraint;
 
+	public UiConstraints() {
+
+	}
+
+	public UiConstraints(XConstraint xConstraint, YConstraint yConstraint, WidthConstraint widthConstraint,
+			HeightConstraint heightConstraint) {
+		this.xConstraint = xConstraint;
+		this.yConstraint = yConstraint;
+		this.widthConstraint = widthConstraint;
+		this.heightConstraint = heightConstraint;
+	}
+
 	/**
 	 * Sets the XConstraint of this UiConstraints to the provided constraint.
 	 * 
