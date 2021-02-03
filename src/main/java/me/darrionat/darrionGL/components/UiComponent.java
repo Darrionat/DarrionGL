@@ -1,6 +1,5 @@
 package me.darrionat.darrionGL.components;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
@@ -185,7 +184,7 @@ public abstract class UiComponent {
 	 * 
 	 * @param g graphics to utilize for drawing on
 	 */
-	protected abstract void draw(Graphics g);
+	protected abstract void draw(Graphics2D g2D);
 
 	/**
 	 * Checks to see if this component or any subcomponents contain the defined

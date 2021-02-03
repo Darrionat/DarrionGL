@@ -1,5 +1,7 @@
 package me.darrionat.darrionGL;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 import me.darrionat.darrionGL.events.MouseEvents;
@@ -22,9 +24,11 @@ public abstract class UI extends JFrame {
 	}
 
 	public void initUI() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setVisible(true);
-		width = getWidth();
-		height = getHeight();
+		/// width = getWidth();
+		// height = getHeight();
 		events = new MouseEvents();
 	}
 
@@ -38,15 +42,19 @@ public abstract class UI extends JFrame {
 			currentMenu.removeMouseListener(events);
 			currentMenu.removeMouseWheelListener(events);
 		}
+		if (currentMenu != null)
+			remove(currentMenu);
+
 		currentMenu = container;
 		add(container);
-		pack();
-		setVisible(true);
-		container.setComponents();
+		// pack();
+		// setVisible(true);
 		width = getWidth();
 		height = getHeight();
+		container.setComponents();
 		container.addMouseListener(events);
 		container.addMouseMotionListener(events);
 		container.addMouseWheelListener(events);
+		pack();
 	}
 }

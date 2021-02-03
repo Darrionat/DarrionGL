@@ -1,6 +1,5 @@
 package me.darrionat.darrionGL.components;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 
@@ -21,8 +20,7 @@ public class UiBlock extends UiComponent implements Clickable, Hoverable {
 	}
 
 	@Override
-	protected void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+	protected void draw(Graphics2D g2d) {
 		rect = new RoundRectangle2D.Double(getX(), getY(), getWidth(), getHeight(), radius, radius);
 		g2d.setColor(uiColor.getColor());
 		g2d.fill(rect);

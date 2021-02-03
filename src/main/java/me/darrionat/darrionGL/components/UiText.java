@@ -249,17 +249,16 @@ public class UiText extends UiComponent {
 	}
 
 	@Override
-	protected void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+	protected void draw(Graphics2D g2d) {
 		g2d.setColor(uiColor.getColor());
-		g.setFont(font);
+		g2d.setFont(font);
 
 		if (isHorizontallyAligned()) {
-			boundXToComponent(g);
+			boundXToComponent(g2d);
 		}
 		if (isVerticallyAligned()) {
-			boundYToComponent(g);
+			boundYToComponent(g2d);
 		}
-		g.drawString(text, getX(), getY());
+		g2d.drawString(text, getX(), getY());
 	}
 }
